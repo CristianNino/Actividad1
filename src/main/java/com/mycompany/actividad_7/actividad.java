@@ -9,15 +9,13 @@ import javax.swing.JPanel;
 public class actividad extends javax.swing.JFrame {
     
     public float uno=100;
-    public float uno1=2000000;
-    public float uno2=5000000;
-    public float uno3=20000000;
-    public float uno4=40000000;
+    public float uno1=200000;
     public float calcularr;
-    public float dos1=90;
-    public float dos2=85;
-    public float dos3=80;
-    public float dos4=75;
+    public int descuentos = 0;
+    public int descuentoA = 0;
+    public int descuentoB = 0;
+    public int descuentoC = 0;
+    
     
     
 
@@ -29,7 +27,8 @@ public class actividad extends javax.swing.JFrame {
         fecha.addItem("2005");
         fecha.addItem("2010");
         fecha.addItem("2020");
-        
+        PRECIO.setText(""+ uno1);
+        DESCUENTO.setText("0%");
         
     }
 
@@ -55,6 +54,12 @@ public class actividad extends javax.swing.JFrame {
         PRECIO = new javax.swing.JLabel();
         DESCUENTO = new javax.swing.JLabel();
         TOTAL = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        Dia = new javax.swing.JComboBox<>();
+        Traslado = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        Publico = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 204));
@@ -120,7 +125,7 @@ public class actividad extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,22 +146,41 @@ public class actividad extends javax.swing.JFrame {
         TOTAL.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TOTAL.setOpaque(true);
 
+        jLabel9.setText("Pago Pronto");
+
+        jLabel10.setText("Vehiculo traladado?");
+
+        Dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
+        Dia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiaActionPerformed(evt);
+            }
+        });
+
+        Traslado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
+        Traslado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrasladoActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Servicio publico");
+
+        Publico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No", "Si" }));
+        Publico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PublicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DESCUENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -169,14 +193,35 @@ public class actividad extends javax.swing.JFrame {
                             .addComponent(fecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(118, 118, 118)
+                        .addComponent(CALCULAR)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CALCULAR)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel11))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                                .addComponent(PRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(PRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Dia, 0, 163, Short.MAX_VALUE)
+                                    .addComponent(DESCUENTO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Publico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Traslado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(18, 18, 18))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,22 +239,42 @@ public class actividad extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(DESCUENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(PRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Dia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Traslado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(31, 31, 31)
-                        .addComponent(CALCULAR))
-                    .addComponent(TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(52, 52, 52))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(31, 31, 31)
+                                .addComponent(CALCULAR))
+                            .addComponent(TOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Publico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(DESCUENTO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(PRECIO, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,61 +288,95 @@ public class actividad extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void CALCULARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CALCULARActionPerformed
-
-        String rr=(String)fecha.getSelectedItem();
-        if(rr.equals("2000")){
-            calcularr=(uno1/uno)*dos1;
-            this.TOTAL.setText(""+calcularr);
-
-        }
-        if(rr.equals("2005")){
-            calcularr=(uno1/uno)*dos2;
-            this.TOTAL.setText(""+calcularr);
-        }
-        if(rr.equals("2010")){
-            calcularr=(uno1/uno)*dos3;
-            this.TOTAL.setText(""+calcularr);
-        }
-        if(rr.equals("2020")){
-            calcularr=(uno1/uno)*dos4;
-            this.TOTAL.setText(""+calcularr);
-        }
+        int dos3= 100 - descuentos; 
+        calcularr=(uno1/uno)*dos3;
+        this.TOTAL.setText(""+calcularr);
+        
+        
+        
     }//GEN-LAST:event_CALCULARActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
-        String rr=(String)fecha.getSelectedItem();
-        if(rr.equals("2000")){
+        
+        
+    }//GEN-LAST:event_fechaActionPerformed
+
+    private void TrasladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrasladoActionPerformed
+        String rr=(String)Traslado.getSelectedItem();
+        if(rr.equals("No") ){
             String mensaje="2.000.000";
             mensaje= mensaje;
+            descuentoA = 0;
+            descuentos= descuentoA + descuentoB + descuentoC;
             PRECIO.setText(mensaje);
-            DESCUENTO.setText("10%");
+            DESCUENTO.setText(descuentos+"%");
         }
-        if(rr.equals("2005")){
-            String mensaje="5.000.000";
+        if(rr.equals("Si") ){
+            String mensaje="2.000.000";
             mensaje= mensaje;
+            descuentoA = 15;
+            descuentos= descuentoA + descuentoB + descuentoC;
             PRECIO.setText(mensaje);
-            DESCUENTO.setText("15%");
+            DESCUENTO.setText(descuentos+"%");
+   
         }
-        if(rr.equals("2010")){
-            String mensaje="20.000.000";
+        
+       
+        
+    }//GEN-LAST:event_TrasladoActionPerformed
+
+    private void DiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiaActionPerformed
+        
+        String aa=(String)Dia.getSelectedItem();
+        if(aa.equals("No")){
+            String mensaje="2.000.000";
             mensaje= mensaje;
+            descuentoB=0;
+            descuentos= descuentoA + descuentoB + descuentoC;
             PRECIO.setText(mensaje);
-            DESCUENTO.setText("20%");
+            DESCUENTO.setText(descuentos+"%");
         }
-        if(rr.equals("2020")){
-            String mensaje="40.000.000";
+        if(aa.equals("Si")){
+            String mensaje="2.000.000";
             mensaje= mensaje;
+            descuentoB= 5;
+            descuentos= descuentoA + descuentoB + descuentoC;
             PRECIO.setText(mensaje);
-            DESCUENTO.setText("25%");
+            DESCUENTO.setText(descuentos+"%");
         }
-    }//GEN-LAST:event_fechaActionPerformed
+        
+        
+          
+    }//GEN-LAST:event_DiaActionPerformed
+
+    private void PublicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicoActionPerformed
+        String bb=(String)Publico.getSelectedItem();
+        if(bb.equals("No")){
+            String mensaje="2.000.000";
+            mensaje= mensaje;
+            descuentoC=0;
+            descuentos= descuentoA + descuentoB + descuentoC;
+            PRECIO.setText(mensaje);
+            DESCUENTO.setText(descuentos+"%");
+        }
+        if(bb.equals("Si")){
+            String mensaje="2.000.000";
+            mensaje= mensaje;
+            descuentoC= 10;
+            descuentos= descuentoA + descuentoB + descuentoC;
+            PRECIO.setText(mensaje);
+            DESCUENTO.setText(descuentos+"%");
+        }
+    }//GEN-LAST:event_PublicoActionPerformed
 
  
     public static void main(String args[]) {
@@ -315,12 +414,17 @@ public class actividad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CALCULAR;
     private javax.swing.JLabel DESCUENTO;
+    private javax.swing.JComboBox<String> Dia;
     private javax.swing.JComboBox<String> LINEA;
     private javax.swing.JComboBox<String> MARCA;
     private javax.swing.JLabel PRECIO;
+    private javax.swing.JComboBox<String> Publico;
     private javax.swing.JLabel TOTAL;
+    private javax.swing.JComboBox<String> Traslado;
     private javax.swing.JComboBox<String> fecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -328,6 +432,7 @@ public class actividad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
